@@ -27,11 +27,7 @@ public class ApiGatewayVerticle extends AbstractVerticle {
   }
 
   private void handleRequest(HttpServerRequest request) {
-    JsonObject headers = new JsonObject();
-    request.headers().forEach(header -> headers.put(header.getKey(), header.getValue()));
-
     JsonObject requestBody = new JsonObject()
-      .put("headers", headers)
       .put("method", request.method().name())
       .put("path", request.path());
 
