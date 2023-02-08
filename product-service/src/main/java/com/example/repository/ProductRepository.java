@@ -57,7 +57,13 @@ public class ProductRepository {
 
     return client.preparedQuery("insert into products(name, description, price, created_at, updated_at) values ($1, $2, $3, $4, $5)")
       .execute(Tuple.of(product.getName(), product.getDescription(), product.getPrice(), createdAt, updatedAt))
-      .map(rs -> rs.iterator().hasNext()? productMapper.toModel(rs.iterator().next()) : product);
+      .map(rs -> {
+        if(rs.iterator().hasNext()){
+          return productMapper.toModel(rs.iterator().next());
+        }
+
+        return product;
+      });
   }
 
   public Future<Product> update(Product product){
