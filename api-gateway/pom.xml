@@ -24,11 +24,6 @@
     </dependency>
     <dependency>
       <groupId>com.example</groupId>
-      <artifactId>infrstructure</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.example</groupId>
       <artifactId>common-service</artifactId>
       <version>${project.version}</version>
     </dependency>

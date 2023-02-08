@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.example.handler.ProductHandler;
-import com.example.infrastructure.PostgreSql;
+import com.example.utils.PostgreSql;
 import com.example.model.Product;
 import com.example.model.mapper.ProductMapper;
 import com.example.repository.ProductRepository;
@@ -46,6 +46,8 @@ public class ProductServiceVerticle extends AbstractVerticle {
           startPromise.fail(throwable);
           System.err.println("Failed to start HTTP server:" + throwable.getMessage());
         });
+
+      return;
     }
 
     EventBus eventBus = vertx.eventBus();
@@ -77,6 +79,7 @@ public class ProductServiceVerticle extends AbstractVerticle {
         .onFailure(throwable -> {
           message.reply(Json.encode(ResponseEntity.okEntity(1, throwable.getMessage(), null)));
         });
+      return;
     }
 
     if(path.equals("/product/create") && method.equals("POST")){
@@ -88,6 +91,7 @@ public class ProductServiceVerticle extends AbstractVerticle {
         .onFailure(throwable -> {
             message.reply(Json.encode(ResponseEntity.okEntity(1, throwable.getMessage(), null)));
         });
+      return;
     }
 
     if(path.equals("/product/update") && method.equals("POST")){
@@ -99,6 +103,7 @@ public class ProductServiceVerticle extends AbstractVerticle {
         .onFailure(throwable -> {
         message.reply(Json.encode(ResponseEntity.okEntity(1, throwable.getMessage(), null)));
       });
+      return;
     }
 
     if(path.equals("/product/delete") && method.equals("POST")){
@@ -108,7 +113,10 @@ public class ProductServiceVerticle extends AbstractVerticle {
       }).onFailure(throwable -> {
         message.reply(Json.encode(ResponseEntity.okEntity(1, throwable.getMessage(), null)));
       });
+      return;
     }
+
+    message.reply(Json.encode(ResponseEntity.okEntity(2, "No route", null)));
   }
 
   @Override

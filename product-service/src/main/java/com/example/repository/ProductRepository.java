@@ -38,7 +38,8 @@ public class ProductRepository {
   public Future<Product> findById(Integer id){
     Objects.requireNonNull(id, "id not null");
 
-    return client.preparedQuery("select * from products where id=$1").execute(Tuple.of(id))
+    return client.preparedQuery("select * from products where id=$1")
+      .execute(Tuple.of(id))
       .map(RowSet::iterator)
       .map(iterator -> {
           if (iterator.hasNext()) {

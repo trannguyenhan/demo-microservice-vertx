@@ -8,12 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="product-service" />
-        <module name="infrstructure" />
         <module name="common-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="account-service" target="11" />
+      <module name="infrstructure" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
