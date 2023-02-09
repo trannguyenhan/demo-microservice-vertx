@@ -13,7 +13,7 @@ public class Main {
     Config hazelcastConfig = ConfigUtil.loadConfig();
 
     hazelcastConfig.getNetworkConfig().getJoin().getTcpIpConfig().addMember("127.0.0.1").setEnabled(true);
-    hazelcastConfig.getNetworkConfig().setPort(5702).setPortCount(100).setPortAutoIncrement(true);
+    hazelcastConfig.getNetworkConfig().setPort(5701).setPortCount(100).setPortAutoIncrement(true);
     hazelcastConfig.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
     hazelcastConfig.setClusterName("demo");
 
